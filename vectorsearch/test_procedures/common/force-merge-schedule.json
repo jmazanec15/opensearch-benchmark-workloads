@@ -3,13 +3,15 @@
     "operation" : "refresh-target-index"
 },
 {
-  "name": "update-index-thread-qty",
-  "operation": "put-settings",
-  "body": {
+  "operation": {
+    "name": "update-index-thread-qty",
+    "operation-type": "put-settings",
+    "body": {
       "persistent" : {
-        "knn.algo_param.index_thread_qty" : {{ target_index_force_merge_threads }}
+        "knn.algo_param.index_thread_qty": {{target_index_force_merge_threads}}
       }
-   }
+    }
+  }
 },
 {
     "name" : "force-merge-segments",

@@ -22,6 +22,7 @@
          "docvalue_fields" : ["_id"],
          "stored_fields" : "_none_"
     },
+    "repetitions": 20,
 
     "query_data_set_format": "hdf5",
     "query_data_set_path":"/home/ec2-user/data/cohere-v3-msmarco-v2.1-embed-norm-english.hdf5",
