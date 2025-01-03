@@ -1,4 +1,16 @@
 {
+  "name": "cluster-settings",
+  "operation": {
+    "operation-type": "put-settings",
+    "body": {
+      "persistent": {
+        "knn.memory.circuit_breaker.limit" : "75%",
+        "knn.algo_param.index_thread_qty" : 4
+      }
+    }
+  }
+},
+{
     "operation": {
         "name": "delete-target-index",
         "operation-type": "delete-index",
