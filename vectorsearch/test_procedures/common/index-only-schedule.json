@@ -1,5 +1,5 @@
 {
-  "name": "cluster-settings",
+  "name": "cluster-settings-0",
   "operation": {
     "operation-type": "put-settings",
     "body": {
@@ -44,4 +44,13 @@
 {
     "name" : "refresh-target-index",
     "operation" : "refresh-target-index"
+},
+{
+  "name": "collect-stats-after-index",
+  "operation": {
+    "operation-type": "index-stats",
+    "index": "{{ target_index_name }}",
+    "retry-until-success": false,
+    "include-in-reporting": true
+  }
 }

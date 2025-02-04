@@ -9,4 +9,13 @@
 {
     "name" : "refresh-target-index-after-force-merge",
     "operation" : "refresh-target-index"
+},
+{
+  "name": "collect-stats-after-forcemerge",
+  "operation": {
+    "operation-type": "index-stats",
+    "index": "{{ target_index_name }}",
+    "retry-until-success": false,
+    "include-in-reporting": true
+  }
 }

@@ -79,4 +79,13 @@
         {{ benchmark.collect(parts="common/index-only-schedule.json") }},
         {{ benchmark.collect(parts="common/multiple-search-schedule.json") }}
     ]
+},
+{
+    "name": "derived-source-test",
+    "description": "Test derived source",
+    "default": false,
+    "schedule": [
+        {{ benchmark.collect(parts="common/index-only-schedule.json") }},
+        {{ benchmark.collect(parts="common/search-merge-search.json") }}
+    ]
 }
