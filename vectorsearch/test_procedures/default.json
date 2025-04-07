@@ -60,4 +60,27 @@
         {{ benchmark.collect(parts="common/force-merge-schedule.json") }},
         {{ benchmark.collect(parts="common/search-only-schedule.json") }}
     ]
+},
+{
+    "name": "e2e",
+    "description": "end-to-end",
+    "default": false,
+    "schedule": [
+       {% with stage="initial-" %}
+       {{ benchmark.collect(parts="common/index-only-schedule.json") }},
+       {% endwith %}
+       {% with stage="multi-segment-query-" %}
+       {{ benchmark.collect(parts="common/search-only-schedule.json") }},
+       {% endwith %}
+       {{ benchmark.collect(parts="common/force-merge-schedule.json") }},
+       {% with stage="single-segment-query-" %}
+       {{ benchmark.collect(parts="common/search-only-schedule.json") }},
+       {% endwith %}
+       {{ benchmark.collect(parts="common/reindex-only-schedule.json") }},
+       {% with stage="reindex-query-" %}
+       {% with is_reindex=true %}
+       {{ benchmark.collect(parts="common/search-only-schedule.json") }}
+       {% endwith %}
+       {% endwith %}
+    ]
 }

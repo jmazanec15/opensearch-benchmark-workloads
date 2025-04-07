@@ -2,7 +2,7 @@
 {% set train_knn_model_encoder_comma = joiner(",") %}
 {
     "operation": {
-        "name": "delete-target-index-before-model-training",
+        "name": "{{ stage  | default('') }}delete-target-index-before-model-training",
         "operation-type": "delete-index",
         "only-if-exists": true,
         "index": "{{ target_index_name | default('target_index') }}"
@@ -10,7 +10,7 @@
 },
 {
     "operation": {
-        "operation-type": "delete-knn-model",
+        "operation-type": "{{ stage  | default('') }}delete-knn-model",
         "name": "delete-model",
         "model_id": "{{ train_model_id }}",
         "ignore-if-model-does-not-exist": true
@@ -18,7 +18,7 @@
 },
 {
     "operation": {
-        "name": "train-knn-model",
+        "name": "{{ stage  | default('') }}train-knn-model",
         "operation-type": "train-knn-model",
         "body": {
             "training_index": "{{ train_index_name | default('train_index') }}",
@@ -73,14 +73,14 @@
 },
 {
     "operation": {
-        "name": "create-target-index",
+        "name": "{{ stage  | default('') }}create-target-index",
         "operation-type": "create-index",
         "index": "{{ target_index_name | default('target_index') }}"
     }
 },
 {
     "operation": {
-        "name": "custom-vector-bulk",
+        "name": "{{ stage  | default('') }}custom-vector-bulk",
         "operation-type": "bulk-vector-data-set",
         "index": "{{ target_index_name | default('target_index') }}",
         "field": "{{ target_field_name | default('target_field') }}",

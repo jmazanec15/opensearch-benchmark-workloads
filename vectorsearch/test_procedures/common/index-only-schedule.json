@@ -1,6 +1,6 @@
 {
     "operation": {
-        "name": "delete-target-index",
+        "name": "{{ stage | default('') }}delete-target-index",
         "operation-type": "delete-index",
         "only-if-exists": true,
         "index": "{{ target_index_name | default('target_index') }}"
@@ -8,14 +8,14 @@
 },
 {
     "operation": {
-        "name": "create-target-index",
+        "name": "{{ stage | default('') }}create-target-index",
         "operation-type": "create-index",
         "index": "{{ target_index_name | default('target_index') }}"
     }
 },
 {
     "operation": {
-        "name": "custom-vector-bulk",
+        "name": "{{ stage  | default('') }}custom-vector-bulk",
         "operation-type": "bulk-vector-data-set",
         "index": "{{ target_index_name | default('target_index') }}",
         "field": "{{ target_field_name | default('target_field') }}",
@@ -30,6 +30,6 @@
     "clients": {{ target_index_bulk_indexing_clients | default(1)}}
 },
 {
-    "name" : "refresh-target-index",
+    "name" : "{{ stage | default('') }}refresh-target-index",
     "operation" : "refresh-target-index"
 }

@@ -1,0 +1,43 @@
+{
+    "operation": {
+        "name": "{{ stage | default('') }}delete-reindex-target-index",
+        "operation-type": "delete-index",
+        "only-if-exists": true,
+        "index": "{{ reindex_target_index_name | default('reindex_target_index') }}"
+    }
+},
+{
+    "operation": {
+        "name": "{{ stage | default('') }}create-target-index",
+        "operation-type": "create-index",
+        "index": "{{ reindex_target_index_name | default('reindex_target_index') }}"
+    }
+},
+{
+  "name": "{{ stage | default('') }}reindex",
+  "operation": {
+    "operation-type": "reindex",
+    "body": {
+      "source": {
+        "index": "{{ target_index_name | default('target_index') }}"
+      },
+      "dest": {
+        "index": "{{ reindex_target_index_name | default('reindex_target_index') }}"
+      }
+    },
+    "request_timeout": 7200
+  }
+},
+{
+    "name" : "{{ stage | default('') }}refresh-target-index",
+    "operation" : "refresh-target-index",
+    "target_index_name": "{{ reindex_target_index_name | default('reindex_target_index') }}"
+},
+{
+    "operation": {
+        "name": "{{ stage | default('') }}delete-target-index",
+        "operation-type": "delete-index",
+        "only-if-exists": true,
+        "index": "{{ target_index_name | default('target_index') }}"
+    }
+}

@@ -8,6 +8,10 @@
             "body": "{{ target_index_body }}"
         },
         {
+            "name": "{{ reindex_target_index_name | default('reindex_target_index') }}",
+            "body": "{{ target_index_body }}"
+        },
+        {
             "name": "{{ train_index_name | default('train_index') }}",
             "body": "{{ train_index_body }}"
         }
