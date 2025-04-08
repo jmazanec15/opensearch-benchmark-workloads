@@ -1,4 +1,15 @@
 {
+  "name": "{{ stage  | default('') }}search-begin-cluster-settings",
+  "operation": {
+    "operation-type": "put-settings",
+    "body": {
+      "persistent": {
+        "knn.cache.item.expiry.enabled": false
+      }
+    }
+  }
+},
+{
     "name" : "{{ stage  | default('') }}warmup-indices",
     "operation" : {
         "operation-type": "warmup-knn-indices",
@@ -48,4 +59,16 @@
         "filter_type": {{filter_type  | default ({}) | tojson }}
     },
     "clients": {{ search_clients | default(1)}}
+},
+{
+  "name": "{{ stage  | default('') }}search-end-cluster-settings",
+  "operation": {
+    "operation-type": "put-settings",
+    "body": {
+      "persistent": {
+        "knn.cache.item.expiry.enabled": true,
+        "knn.cache.item.expiry.minutes": "1m"
+      }
+    }
+  }
 }

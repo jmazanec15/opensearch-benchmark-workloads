@@ -7,6 +7,20 @@
     }
 },
 {
+  "name": "{{ stage  | default('') }}index-cluster-settings",
+  "operation": {
+    "operation-type": "put-settings",
+    "body": {
+      "persistent": {
+        "knn.memory.circuit_breaker.limit" : "95%",
+        "knn.cache.item.expiry.enabled": true,
+        "knn.cache.item.expiry.minutes": "1m",
+        "knn.algo_param.index_thread_qty" : 4
+      }
+    }
+  }
+},
+{
     "operation": {
         "name": "{{ stage | default('') }}create-target-index",
         "operation-type": "create-index",
